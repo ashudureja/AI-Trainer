@@ -34,6 +34,35 @@ http.route({
     const wh = new Webhook(webhookSecret);
     let evt: WebhookEvent;
 
+// User signs up (e.g. via Clerk sign-in UI)
+//         ↓
+// Clerk creates user
+//         ↓
+// Clerk sends a webhook to your endpoint (/clerk-webhook)
+//         ↓
+// Webhook handler receives event → event.type = "user.created"
+//         ↓
+// Extract name, email, image, clerkId from event
+//         ↓
+// Call syncUser mutation:
+//   ctx.runMutation(api.users.syncUser, { ...userInfo })
+//         ↓
+// Convex inserts new user into "users" table
+
+
+    // {
+    //   "type": "user.created",  // This indicates that a new user was created
+    //   "data": {
+    //     "id": "clerk512",  // Clerk's unique ID for the user
+    //     "first_name": "Ashu",
+    //     "last_name": "Dureja",
+    //     "email_addresses": [
+    //       { "email_address": "ashutosh@dureja.com" }
+    //     ],
+    //     "image_url": "https://example.com/ashu.png"
+    //   }
+    // }
+
     try {
       evt = wh.verify(body, {
         "svix-id": svix_id,

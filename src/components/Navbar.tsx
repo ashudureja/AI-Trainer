@@ -9,75 +9,69 @@ const Navbar = () => {
   const { isSignedIn } = useUser();
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-background/60 backdrop-blur-md border-b border-border py-3">
-      <div className="container mx-auto flex items-center justify-between">
+    <div className="fixed top-0 w-full rounded-2xl z-50 bg-zinc-900 border-b border-zinc-800 shadow-lg">
+      <div className="container flex items-center justify-between h-16 px-4 mx-auto">
         {/* LOGO */}
-        <Link href="/" className="flex items-center gap-2">
-          <div className="p-1 bg-primary/10 rounded">
-            <ZapIcon className="w-4 h-4 text-primary" />
+        <Link href="/" className="flex items-center">
+          <DumbbellIcon className="w-6 h-6 mr-2 text-red-500" />
+          <div className="flex flex-col">
+            <div className="flex items-center">
+              <span className="text-xl font-bold bg-gradient-to-r from-red-500 to-red-600 bg-clip-text text-transparent">
+                Muscle AI
+              </span>
+              <span className="ml-2 px-1.5 py-0.5 text-xs font-bold text-zinc-900 bg-gradient-to-r from-red-400 to-red-500 rounded-md">
+                BETA
+              </span>
+            </div>
+            <span className="text-xs text-zinc-400">in its power</span>
           </div>
-          <span className="text-xl font-bold font-mono">
-            code<span className="text-primary">flex</span>.ai
-          </span>
         </Link>
 
         {/* NAVIGATION */}
-        <nav className="flex items-center gap-5">
+        <div className="flex items-center space-x-1 md:space-x-4">
           {isSignedIn ? (
             <>
-              <Link
-                href="/"
-                className="flex items-center gap-1.5 text-sm hover:text-primary transition-colors"
-              >
-                <HomeIcon size={16} />
-                <span>Home</span>
+              <Link href="/">
+                <Button variant="ghost" className="flex items-center gap-1 hover:text-red-500 hover:bg-zinc-800">
+                  <HomeIcon className="w-4 h-4" />
+                  <span className="hidden md:inline">Home</span>
+                </Button>
               </Link>
-
-              <Link
-                href="/generate-program"
-                className="flex items-center gap-1.5 text-sm hover:text-primary transition-colors"
-              >
-                <DumbbellIcon size={16} />
-                <span>Generate</span>
+              <Link href="/generate">
+                <Button variant="ghost" className="flex items-center gap-1 hover:text-red-500 hover:bg-zinc-800">
+                  <ZapIcon className="w-4 h-4" />
+                  <span className="hidden md:inline">Generate</span>
+                </Button>
               </Link>
-
-              <Link
-                href="/profile"
-                className="flex items-center gap-1.5 text-sm hover:text-primary transition-colors"
-              >
-                <UserIcon size={16} />
-                <span>Profile</span>
+              <Link href="/profile">
+                <Button variant="ghost" className="flex items-center gap-1 hover:text-red-500 hover:bg-zinc-800">
+                  <UserIcon className="w-4 h-4" />
+                  <span className="hidden md:inline">Profile</span>
+                </Button>
               </Link>
-              <Button
-                asChild
-                variant="outline"
-                className="ml-2 border-primary/50 text-primary hover:text-white hover:bg-primary/10"
-              >
-                <Link href="/generate-program">Get Started</Link>
+              <Button className="bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white border-none">
+                Get Started
               </Button>
-              <UserButton />
+              <UserButton afterSignOutUrl="/" />
             </>
           ) : (
             <>
-              <SignInButton>
-                <Button
-                  variant={"outline"}
-                  className="border-primary/50 text-primary hover:text-white hover:bg-primary/10"
-                >
+              <SignInButton mode="modal">
+                <Button variant="ghost" className="hover:text-red-500 hover:bg-zinc-800">
                   Sign In
                 </Button>
               </SignInButton>
-
-              <SignUpButton>
-                <Button className="bg-primary text-primary-foreground hover:bg-primary/90">
+              <SignUpButton mode="modal">
+                <Button className="bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white border-none">
                   Sign Up
                 </Button>
               </SignUpButton>
             </>
           )}
-        </nav>
+        </div>
       </div>
-    </header>
+    </div>
   );
 };
+
 export default Navbar;
