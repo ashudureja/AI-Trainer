@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { vapi } from "@/lib/vapi";
-import { useUser } from "@clerk/nextjs";
+import { useUser, useAuth } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { DumbbellIcon, FlameIcon, ZapIcon } from "lucide-react";
@@ -16,9 +16,17 @@ const GenerateProgramPage = () => {
   const [callEnded, setCallEnded] = useState(false);
 
   const { user } = useUser();
+  const { isSignedIn, isLoaded } = useAuth();
   const router = useRouter();
 
   const messageContainerRef = useRef<HTMLDivElement>(null);
+
+  // Check authentication status
+  useEffect(() => {
+    if (isLoaded && !isSignedIn) {
+      router.replace("/sign-in?redirect_url=/generate");
+    }
+  }, [isLoaded, isSignedIn, router]);
 
   // SOLUTION to get rid of "Meeting has ended" error
   useEffect(() => {

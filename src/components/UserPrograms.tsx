@@ -106,7 +106,7 @@ const UserPrograms = () => {
                   <div>
                     <CardTitle className="text-xl text-zinc-100">
                       {program.first_name}
-                      <span className="text-red-500">.exe</span>
+                     
                     </CardTitle>
                     <div className="text-sm text-zinc-400 flex items-center gap-2 mt-1">
                       <Users className="h-4 w-4 text-zinc-500" />
@@ -215,16 +215,19 @@ const UserPrograms = () => {
           {/* Additional social proof */}
           <div className="flex justify-center mt-8">
             <div className="flex -space-x-4">
-              {[1, 2, 3, 4, 5].map((index) => (
+              {[
+                "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face",
+                "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&h=150&fit=crop&crop=face",
+                "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face",
+                "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face",
+                "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150&h=150&fit=crop&crop=face"
+              ].map((imageUrl, index) => (
                 <div key={index} className="w-10 h-10 rounded-full border-2 border-zinc-800 overflow-hidden bg-zinc-800">
                   <img 
-                    src={`/avatar-${index}.jpg`} 
+                    src={imageUrl} 
                     alt="User" 
                     className="w-full h-full object-cover"
-                    // onError={(e) => {
-                    //   e.target.onerror = null; 
-                    //   e.target.src = '/api/placeholder/40/40';
-                    // }}
+                    loading="lazy"
                   />
                 </div>
               ))}

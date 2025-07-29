@@ -5,9 +5,22 @@ import { Button } from "@/components/ui/button";
 import UserPrograms from "@/components/UserPrograms";
 import { ArrowRightIcon, Dumbbell, Target, Users } from "lucide-react";
 import Link from "next/link";
-import { FaGithub, FaLinkedin, FaWhatsapp } from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaInstagram } from "react-icons/fa";
+import { useAuth } from "@clerk/nextjs";
+import { useRouter } from "next/navigation";
 
 const HomePage = () => {
+  const { isSignedIn } = useAuth();
+  const router = useRouter();
+
+  const handleStartJourney = () => {
+    if (isSignedIn) {
+      router.push("/generate");
+    } else {
+      router.push("/sign-in?redirect_url=/generate");
+    }
+  };
+
   const headingVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: { 
@@ -123,24 +136,23 @@ const HomePage = () => {
               >
                 <Button
                   size="lg"
-                  asChild
-                  className="overflow-hidden bg-gradient-to-r from-red-600 to-red-700 hover:from-red-500 hover:to-red-600 text-white px-8 py-6 text-lg font-bold rounded-md shadow-lg shadow-red-900/30 transition-all duration-300 hover:scale-105"
+                  onClick={handleStartJourney}
+                  className="overflow-hidden bg-gradient-to-r from-red-600 to-red-700 hover:from-red-500 hover:to-red-600 text-white px-8 py-6 text-lg font-bold rounded-md shadow-lg shadow-red-900/30 transition-all duration-300 hover:scale-105 flex items-center font-mono"
                 >
-                  <Link href={"/generate-program"} className="flex items-center font-mono">
-                    START YOUR JOURNEY
-                    <ArrowRightIcon className="ml-2 size-5" />
-                  </Link>
+                  START YOUR JOURNEY
+                  <ArrowRightIcon className="ml-2 size-5" />
                 </Button>
                 
                 <Button
                   variant="outline"
+                  disabled
                   size="lg"
                   asChild
                   className="border-red-500 text-red-500 hover:bg-red-500/10 px-8 py-6 text-lg font-bold"
                 >
-                  <Link href={"/about"} className="flex items-center font-mono">
+                  <div  className="flex items-center font-mono">
                     LEARN MORE
-                  </Link>
+                  </div>
                 </Button>
               </motion.div>
             </motion.div>
@@ -280,10 +292,34 @@ const HomePage = () => {
           <h2 className="text-lg font-semibold">Ashu Dureja</h2>
           <p className="text-sm font-bold">ashudurej0@gmail.com</p>
         </div>
-        <motion.div className="flex space-x-4 text-2xl">
-          <motion.div whileHover={{ scale: 1.2 }}><FaGithub className="cursor-pointer hover:text-gray-400" /></motion.div>
-          <motion.div whileHover={{ scale: 1.2 }}><FaLinkedin className="cursor-pointer hover:text-gray-400" /></motion.div>
-          <motion.div whileHover={{ scale: 1.2 }}><FaWhatsapp className="cursor-pointer hover:text-gray-400" /></motion.div>
+        <motion.div className="flex space-x-4">
+          <motion.a 
+            href="https://github.com/ashudureja?tab=overview&from=2025-06-01&to=2025-06-30" 
+            className=" cursor-pointer rounded-full p-2 sm:p-2.5 hover:text-gray-300 transform transition-colors duration-[0.4s] ease-out"
+            whileHover={{ scale: 1.1 }}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <FaGithub size={16} className="sm:w-[18px] sm:h-[18px]" />
+          </motion.a>
+          <motion.a 
+            href="https://www.linkedin.com/in/ashutosh-dureja-919072209/" 
+            className=" cursor-pointer rounded-full p-2 sm:p-2.5  transform transition-colors duration-[0.4s] ease-out"
+            whileHover={{ scale: 1.1 }}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <FaLinkedin size={16} className="sm:w-[18px] sm:h-[18px]" />
+          </motion.a>
+          <motion.a 
+            href="https://www.instagram.com/ashudureja_/" 
+            className="rounded-full cursor-pointer  p-2 sm:p-2.5  transform transition-colors duration-[0.4s] ease-out"
+            whileHover={{ scale: 1.1 }}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <FaInstagram size={16} className="sm:w-[18px] sm:h-[18px]" />
+          </motion.a>
         </motion.div>
       </motion.div>
     </div>

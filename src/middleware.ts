@@ -1,6 +1,6 @@
 import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
 
-const isProtectedRoute = createRouteMatcher(["/generate-program", "/profile"]);
+const isProtectedRoute = createRouteMatcher(["/generate", "/generate-program", "/profile"]);
 
 // It ensures that users are authenticated before accessing specific paths like /generate-program and /profile.
 
