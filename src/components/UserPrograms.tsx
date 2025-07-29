@@ -51,7 +51,7 @@ const UserPrograms = () => {
             <div className="grid grid-cols-3 gap-8 mt-10 max-w-3xl mx-auto">
               <div className="flex flex-col items-center p-6 bg-zinc-800/50 rounded-lg border border-zinc-700/50">
                 <Flame className="h-8 w-8 text-red-500 mb-3" />
-                <p className="text-3xl text-red-500 font-bold">500+</p>
+                <p className="md:text-3xl text-lg sm:text-xl lg:text-2xl text-red-500 font-bold">500+</p>
                 <p className="text-sm text-zinc-400 uppercase tracking-wide mt-1 font-mono">
                   PROGRAMS
                 </p>
@@ -59,7 +59,7 @@ const UserPrograms = () => {
               
               <div className="flex flex-col items-center p-6 bg-zinc-800/50 rounded-lg border border-zinc-700/50">
                 <Clock className="h-8 w-8 text-red-500 mb-3" />
-                <p className="text-3xl text-red-500 font-bold">3min</p>
+                <p className="md:text-3xl text-lg sm:text-xl lg:text-2xl text-red-500 font-bold">3min</p>
                 <p className="text-sm text-zinc-400 uppercase tracking-wide mt-1 font-mono">
                   CREATION TIME
                 </p>
@@ -67,7 +67,7 @@ const UserPrograms = () => {
               
               <div className="flex flex-col items-center p-6 bg-zinc-800/50 rounded-lg border border-zinc-700/50">
                 <Target className="h-8 w-8 text-red-500 mb-3" />
-                <p className="text-3xl text-red-500 font-bold">100%</p>
+                <p className="md:text-3xl text-lg sm:text-xl lg:text-2xl text-red-500 font-bold">100%</p>
                 <p className="text-sm text-zinc-400 uppercase tracking-wide mt-1 font-mono">
                   PERSONALIZED
                 </p>
